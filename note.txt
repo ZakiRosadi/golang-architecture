@@ -125,3 +125,45 @@ dataDB :=database.DBConnection()
 	//=============read==========================
 	data := bookController.FindAll()
 	fmt.Println("all data : ", data)
+
+
+
+//pointer
+
+	//  A := 5
+	//  B := &A
+
+	// fmt.Println("address of variable A : " , B)
+	// fmt.Println("the value of the adress is : " ,*B)
+
+	// *B = 25
+	// fmt.Println(*B)
+	// fmt.Println("new value of variable A : " , A)
+
+	//==================================next pointer==================================
+	// var A int = 10
+	// var B *int = &A
+	// fmt.Println(A)
+	// fmt.Println("address of variable A : " , B)
+	// fmt.Println("the value of the adress is : " ,*B)
+
+	//  A  = 20
+	//  fmt.Println(A)
+	//  fmt.Println(&A)
+	//  B  = &A
+	//  fmt.Println(*B)
+
+	//==================================next pointer change value==================================
+	// number := 10
+	// fmt.Println("Initial Value : " , number)
+	// fmt.Println("Address of Initial Value : " , &number)
+
+	// Change(&number, 100)
+
+	// fmt.Println("Final Value : " , number)
+	// fmt.Println("Address of Final Value : " , &number)
+// func Change(old *int, new int){
+// 	*old = new
+// 	fmt.Println("value in function : ",*old)
+// 	fmt.Println("address in function : ", &old)
+// }
