@@ -1,0 +1,127 @@
+CRUD
+USING DUMMY DATA
+//this is for creating data
+
+	// var book models.BookModels
+	// book.Name = "LARAVEL"
+	// book.Price = 100000
+	// book.Author = "Zaki"
+	// book.Description = "PHP is a future language"
+	
+	// err := database.Database().Create(&book).Error
+	// if err != nil {
+	// 	fmt.Println("============= this is error ============", err)
+	// }
+	// fmt.Println("all data : ", book)
+
+//==================================================================================================	
+	//this is for reading data specifically. by id
+
+	// var book models.BookModels
+	// err := database.Database().Debug().Where("author = ?", "Zaki").Last(&book).Error
+	// if err != nil {
+	// 	fmt.Println("============= this is error ============", err)
+	// }
+	
+	// fmt.Println("all data : ", book)
+	// fmt.Println("name : ", book.Name)
+
+//==================================================================================================
+	// this is for getting all data
+
+	// var book []models.BookModels
+	// err := database.Database().Find(&book).Error
+	// if err != nil {
+	// 	fmt.Println("============= this is error ============", err)
+	// }
+	
+	// for _, b := range book{
+	// 	fmt.Println("name : ", b.Name)
+	// 	fmt.Println("author : ", b)
+	// }
+
+
+	// fmt.Println("all data : ", book)
+//==================================================================================================
+	//this is for updating data
+
+	// var book models.BookModels
+	// err := database.Database().Debug().Where("id = ?", 1).First(&book).Error
+	// if err != nil {
+	// 	fmt.Println("============= this is error ============", err)
+	// }
+
+	// book.Name = "GOlang new version"
+	// database.Database().Save(&book)
+	// fmt.Println(
+	// 	"all data : ", book,
+	// )
+//==================================================================================================
+	//this is for deleting data
+    
+	var book models.BookModels
+	err := database.Database().Debug().Where("id = ?", 5).First(&book).Error
+	if err != nil {
+		fmt.Println("============= this is error ============", err)
+	}
+	erroraja := database.Database().Delete(&book).Error
+	if erroraja != nil {
+		fmt.Println("============= this is error ============", erroraja)
+	}
+	fmt.Println("sucessfully delete data", book)
+
+
+
+
+====================main.go================================
+// repository
+repository is made to communicate to database
+dataDB :=database.DBConnection()
+
+	bookRepository := repository.NewBookRepository(dataDB)
+//=============read==========================	
+	// data := bookRepository.FindAll()
+	// fmt.Println("all data : ", data)
+
+//=============read by id==========================	
+	// data1, _ := bookRepository.FindOneById(2)
+	// fmt.Println("all data : ", data1)
+
+//=============create==========================	
+	// BookData := models.BookModels{
+	// 	Name : "golang",
+	// 	Author : "zaki",
+	// 	Price : 100,
+	// 	Description : "this is golang",
+	// }
+	// newData,_ := bookRepository.Create(BookData)
+	// fmt.Println("new data : ", newData)
+
+
+	
+	
+
+	// for _, newdata := range data {
+	// 	fmt.Println(newdata)
+	// }
+
+
+//controllers
+dataDB :=database.DBConnection()
+
+	bookRepository := repository.NewBookRepository(dataDB)
+	bookController := controllers.NewBookController(bookRepository)
+
+	//=============create==========================	
+	// bookData := dto.BookRequest{
+	// 	Name : "algorithm",
+	// 	Author : "zaki",
+	// 	Price : 100000,
+	// 	Description : "this is great algorithm",
+	// }
+	// data,_ := bookController.Create(bookData)
+	// fmt.Println("all data : ", data)
+
+	//=============read==========================
+	data := bookController.FindAll()
+	fmt.Println("all data : ", data)
